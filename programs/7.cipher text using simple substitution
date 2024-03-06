@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char ciphertext[] = "53+++305))6*;4826)47.)4+);806*;48+8160))85;;]8*;;:+8+83 (88)5+;46(;88*96*7;8)* (;485);5*+2:* (;4956*2(5-4)818* :4069285);)6+8)4:1(19:48081:8:821;48485;4)485+528806*81 (19:48;(88;4(1234:48)4;161;188;17;";
+    char decrypted[strlen(ciphertext)];
+
+    for (int i = 0; i < strlen(ciphertext); i++) {
+        if (ciphertext[i] >= 'A' && ciphertext[i] <= 'Z') {
+            decrypted[i] = 'A' + ('Z' - ciphertext[i]);
+        } else if (ciphertext[i] >= 'a' && ciphertext[i] <= 'z') {
+            decrypted[i] = 'a' + ('z' - ciphertext[i]);
+        } else {
+            decrypted[i] = ciphertext[i];
+        }
+    }
+
+    decrypted[strlen(ciphertext)] = '\0';
+
+    printf("Decrypted text: %s\n", decrypted);
+
+    return 0;
+}
