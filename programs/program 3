@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char plaintext[100], key[100], ciphertext[100];
+    int i, j;
+
+    printf("Enter plaintext: ");
+    fgets(plaintext, sizeof(plaintext), stdin);
+    
+    printf("Enter key: ");
+    fgets(key, sizeof(key), stdin);
+
+    int keyLen = strlen(key) - 1;
+    int textLen = strlen(plaintext) - 1;
+
+    for (i = 0; i < textLen; i++) {
+        int shift = key[i % keyLen] - 'a';
+        char plainChar = plaintext[i];
+        if (plainChar >= 'a' && plainChar <= 'z') {
+            j = (plainChar - 'a' + shift) % 26;
+            ciphertext[i] = 'a' + j;
+        } else if (plainChar >= 'A' && plainChar <= 'Z') {
+            j = (plainChar - 'A' + shift) % 26;
+            ciphertext[i] = 'A' + j;
+        } else {
+            ciphertext[i] = plainChar;
+        }
+    }
+    ciphertext[textLen] = '\0';
+
+    printf("Ciphertext: %s\n", ciphertext);
+
+    return 0;
+}
